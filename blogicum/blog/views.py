@@ -1,26 +1,6 @@
 from django.shortcuts import render
 from django.http import Http404
 
-
-def index(request):
-    template = 'blog/index.html'
-    return render(request, template, {'posts': posts})
-
-
-def post_detail(request, id):
-    template = 'blog/detail.html'
-    try:
-        post = {post["id"]: post for post in posts[::-1]}[id]
-    except KeyError:
-        raise Http404('There is no such entry on our blog!')
-    return render(request, template, {'post': post})
-
-
-def category_posts(request, category_slug):
-    template = 'blog/category.html'
-    return render(request, template, {'slug': category_slug})
-
-
 posts = [
     {
         'id': 0,
@@ -63,3 +43,24 @@ posts = [
                 укутывал их, чтобы не испортились от дождя.''',
     },
 ]
+
+CONNECT_POST = {post["id"]: post for post in posts}
+
+
+def index(request):
+    template = 'blog/index.html'
+    return render(request, template, {'posts': posts})
+
+
+def post_detail(request, post_id):
+    template = 'blog/detail.html'
+    try:
+        post = CONNECT_POST[post_id]
+    except KeyError:
+        raise Http404('There is no such entry on our blog!')
+    return render(request, template, {'post': post})
+
+
+def category_posts(request, category_slug):
+    template = 'blog/category.html'
+    return render(request, template, {'slug': category_slug})

@@ -11,7 +11,7 @@
           <ul>
             <li>Место: {{ post.location }}</li>
             <li>Дата: {{ post.date }}</li>
-            <li>Категория: <a href="{% url 'blog:category_posts' 'not_my_day' %}">{{ post.category }}</a></li> #Вот тут возникла проблема. Тесты показывают, что все ок и возможно это не входит в задание, но мне интересно. {{ post.category }} меняет текст в зависимости от поста, но не понимаю, как в url воткнуть эту же переменную, возникает ошибка если пытаюсь вставить значение из словаря. Буду благодарен за помощь.
+            <li>Категория: <a href="{% url 'blog:category_posts' post.category %}">{{ post.category }}</a></li> 
           </ul>
           <p>{{ post.text|truncatewords:10 }}</p>
           <a href="{% url 'blog:post_detail' post.id %}">Читать полный текст</a>

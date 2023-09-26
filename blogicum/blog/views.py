@@ -44,7 +44,7 @@ posts = [
     },
 ]
 
-CONNECT_POST = {post["id"]: post for post in posts}
+POSTS_BY_ID = {post['id']: post for post in posts}
 
 
 def index(request):
@@ -55,7 +55,7 @@ def index(request):
 def post_detail(request, post_id):
     template = 'blog/detail.html'
     try:
-        post = CONNECT_POST[post_id]
+        post = POSTS_BY_ID[post_id]
     except KeyError:
         raise Http404('There is no such entry on our blog!')
     return render(request, template, {'post': post})

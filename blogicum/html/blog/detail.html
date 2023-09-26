@@ -3,14 +3,7 @@
 {% block content %}
   <div class="container py-5">
     <div class="shadow-lg p-3 mb-5 bg-white rounded">
-      <article>
-        <ul>
-          <li>Место: {{ post.location }}</li>
-          <li>Дата: {{ post.date }}</li>
-          <li>Категория: <a href="{% url 'blog:category_posts' post.category %}">{{ post.category }}</a></li>
-        </ul>
-        <p>{{ post.text|linebreaks }}</p>
-      </article>
+      {% include 'article.html'%}
     </div>
   </div>
 {% endblock content %}

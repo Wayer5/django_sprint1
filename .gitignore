@@ -2,11 +2,7 @@
 __pycache__/
 *.py[cod]
 *$py.class
-blogicum/html/css
-blogicum/html/img
-static/
-static-dev/
-
+blogicum/static_dev
 
 # C extensions
 *.so
